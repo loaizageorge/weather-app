@@ -4,7 +4,7 @@ function getWeather(){
     var longitude = "";
     
      var skycons = new Skycons({"color": "pink"});
-skycons.set("icon1", Skycons.RAIN); 
+skycons.set("icon1", Skycons.PARTLY_CLOUDY_NIGHT); 
     skycons.play();
     //var temperature ="";
     if (navigator.geolocation) {
@@ -25,11 +25,7 @@ skycons.set("icon1", Skycons.RAIN);
     });
   });
 }
-        $("unit").click(function () {
-       var text = $('#units').text();
-       $(this).html(text == "C" ? "F" : "C");
-            alert("Button was clicked");
-    });
+    
 
     
     
@@ -39,6 +35,29 @@ skycons.set("icon1", Skycons.RAIN);
 function toFahrenheit(kelvin){
     return Math.round(kelvin*(9/5)-459.60);
 }
+
+
+function change(){
+    var text = $('#changeMe').text();
+    var temp = $('#temperature').text();
+    if(text=='F'){
+        $('#changeMe').text('C');
+        var celsius = Math.round(((temp-32)*(5/9)))
+        $('#temperature').text(celsius);
+    }else{
+        $('#changeMe').text('F');
+        var fahrenheit = Math.round(temp*(9/5)+32);
+        $('#temperature').text(fahrenheit);
+        
+    }
+	
+}
+
+
+
+
+
+
 
 
 

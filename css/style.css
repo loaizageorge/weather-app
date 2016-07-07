@@ -7,8 +7,13 @@
 body{
     font-family: 'Open Sans',sans-serif;
     background-color: aliceblue;
+    
 }
 
+a,a:link,a:visited,a:hover,a:active{
+    color: pink;
+    text-decoration: none;
+}
 
 .style-me{
     font-size: 150px !important;
@@ -34,44 +39,24 @@ h1{
     padding: 10px 25px 10px 25px;
     margin-left: 25%;
     margin-right: 25%;
+    height: auto;
+    width: auto;
     text-align: center;
     color: #FFFFFF;
     
 }
 
 #temperature{
+    display: inline;
+}
+#degree{
     display: inline-block;
+    color: pink;
+}
+#hype{
+    display: inline-block;
+    
 }
 
-#c{
-    color:#00DDF0;
-}
 
-#button-style{
-    color: aqua;
-}
-
-.myButton {
-	-moz-box-shadow: 0px 0px 0px 2px #9fb4f2;
-	-webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;
-	box-shadow: 0px 0px 0px 2px #9fb4f2;
-	background-color:aliceblue;
-	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	border-radius:10px;
-	border:1px solid #4e6096;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:19px;
-	padding:4px 4px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #283966;
-}
-
-.myButton:active {
-	position:relative;
-	top:1px;
-}
 
