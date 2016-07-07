@@ -4,28 +4,34 @@ getWeather();
 function getWeather() {
   var latitude = "";
   var longitude = "";
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
-
-      $("#putWeather").html("latitude: " + position.coords.latitude + "<br>longitude: " + position.coords.longitude);
-
-      $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=cafcb5b05e8a25d0fd9adbd48883493a",
+  var zipcode =" ";
+  
+ $.getJSON("https://api.wunderground.com/api/60cbfb14f00eb290/geolookup/q/autoip.json",
         function(json) {
 
-          
-          var weather = json.weather[0].main;
-          $("#condition").html(json.weather[0].main);
-          var cool = json.main.temp;
-          $("#temperature").html(toFahrenheit(cool));
-          $("#city").html(json.name);
+          var zipcode = json.location.zip;
+ 
 
+     
+      $.getJSON("https://api.wunderground.com/api/60cbfb14f00eb290/conditions/q/"+ zipcode+".json",
+        function(json) {
+          //alert(zipcode);
+         var test = JSON.stringify(json);
+          
+          console.log(test);
+          var weather =json.current_observation.weather;
+          $("#condition").html(weather);
+          var temp = json.current_observation.temp_f;
+          temp = Math.round(temp);
+          $("#temperature").html(temp);
+          $("#city").html(json.current_observation.display_location.full);
+          
+          
+          
           var skycons = new Skycons({
             "color": "pink"
           });
-          if (weather == "Clouds") {
+          if (weather == "Mostly Cloudy") {
             skycons.set("icon1", Skycons.CLOUDY);
           } else if (weather == "Rain" || weather == "Drizzle" || weather == "Thunderstorm") {
             skycons.set("icon1", Skycons.RAIN);
@@ -39,8 +45,8 @@ function getWeather() {
           //skycons.set("icon1", Skycons.PARTLY_CLOUDY_NIGHT); 
           skycons.play();
         });
-    });
-  }
+    
+  });
 
 }
 
@@ -63,3 +69,4 @@ function change() {
   }
 
 }
+
