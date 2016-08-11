@@ -19,6 +19,19 @@ a,a:link,a:visited,a:hover,a:active{
     font-size: 150px !important;
 }
 
+img{
+    width:20%;
+    background-color: grey;
+    display: inline-block;
+    margin-left: 41%;
+    margin-right: 25%;
+    margin-bottom: 30px;
+}
+
+p{
+    text-align: center;
+    
+}
 /*---HEADING---*/ 
 h1{
     font-weight: 700;
@@ -28,13 +41,29 @@ h1{
 
 .title{
     width:auto;
-    margin-bottom: 15%;
+    margin-bottom: 5%;
     
 }
 
 /*---Content---*/
-.content-box{
+.content{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.content-block{
+    display: inline-block;
     background-color: #00DDF0;
+    color: #FFFFFF;
+    border-radius: 25px;
+    padding: 10px 25px 10px 25px;
+    margin-bottom: 10px;
+    
+    
+    
+
+    /*
+background-color: #00DDF0;
     border-radius: 25px;
     padding: 10px 25px 10px 25px;
     margin-left: 25%;
@@ -43,6 +72,9 @@ h1{
     width: auto;
     text-align: center;
     color: #FFFFFF;
+    margin-bottom: 200px;
+*/
+    
     
 }
 
@@ -53,10 +85,5 @@ h1{
     display: inline-block;
     color: pink;
 }
-#hype{
-    display: inline-block;
-    
-}
-
 
 

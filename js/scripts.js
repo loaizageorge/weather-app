@@ -1,5 +1,4 @@
 $(document).ready(getWeather);
-getWeather();
 
 function getWeather() {
   var latitude = "";
@@ -9,16 +8,65 @@ function getWeather() {
  $.getJSON("https://api.wunderground.com/api/60cbfb14f00eb290/geolookup/q/autoip.json",
         function(json) {
 
-          var zipcode = json.location.zip;
+    var zipcode = json.location.zip;
+    $("#city").append(json.location.city);
  
 
      
-      $.getJSON("https://api.wunderground.com/api/60cbfb14f00eb290/conditions/q/"+ zipcode+".json",
+      $.getJSON("https://api.wunderground.com/api/60cbfb14f00eb290/forecast/q/"+ zipcode+".json",
         function(json) {
           //alert(zipcode);
          var test = JSON.stringify(json);
+          var html = "<div class='row'>";
+            for(var i=0;i<4;i++){
+                var weekday = json.forecast.simpleforecast.forecastday[i].date.weekday; 
+                var temperature = json.forecast.simpleforecast.forecastday[i].high.fahrenheit;
+                var weather = json.forecast.simpleforecast.forecastday[i].conditions;
+                var icon = "icon"+i;
+                html = "<div class='col-sm-3'><div class='content-block'><canvas id="+icon+" width='128' height='128'></canvas><h2>"+weekday+"</h2><h2 id='temperature'>"+temperature+"</h2><h2 id='degree'>&deg</h2><h2>"+weather+"</h2></div></div>";
+                $(".content").append(html);
+                
+                 var skycons = new Skycons({
+            "color": "pink"
+          });
+          if (weather == "Mostly Cloudy"||weather == "Partly Cloudy"||weather == "Scattered Clouds") {
+            skycons.set(icon, Skycons.CLOUDY);
+          } else if (weather == "Rain" || weather == "Drizzle" || weather == "Thunderstorm" | weather == "Chance of a Thunderstorm") {
+            skycons.set(icon, Skycons.RAIN);
+          } else if (weather == "Snow") {
+            skycons.set(icon, Skycons.SNOW);
+          } else if (weather == "Clear") {
+            skycons.set(icon, Skycons.CLEAR_DAY);
+          } else {
+            skycons.set(icon, Skycons.CLEAR_DAY);
+          }
+          //skycons.set("icon1", Skycons.PARTLY_CLOUDY_NIGHT); 
+          skycons.play();
+                
+            }
+          //html += "</div>";
+          $(".content").append("</div>");
           
-          console.log(test);
+          /*
+             console.log(json.forecast.simpleforecast.forecastday[0].date.weekday);
+             console.log(json.forecast.simpleforecast.forecastday[0].high.fahrenheit);
+             console.log(json.forecast.simpleforecast.forecastday[0].conditions);
+          
+             console.log(json.forecast.simpleforecast.forecastday[1].date.weekday);
+             console.log(json.forecast.simpleforecast.forecastday[1].high.fahrenheit);
+             console.log(json.forecast.simpleforecast.forecastday[1].conditions);
+          
+             console.log(json.forecast.simpleforecast.forecastday[2].date.weekday);
+             console.log(json.forecast.simpleforecast.forecastday[2].high.fahrenheit);
+             console.log(json.forecast.simpleforecast.forecastday[2].conditions);
+          
+             console.log(json.forecast.simpleforecast.forecastday[3].date.weekday);
+             console.log(json.forecast.simpleforecast.forecastday[3].high.fahrenheit);
+             console.log(json.forecast.simpleforecast.forecastday[3].conditions);
+          
+          
+
+
           var weather =json.current_observation.weather;
           $("#condition").html(weather);
           var temp = json.current_observation.temp_f;
@@ -26,12 +74,12 @@ function getWeather() {
           $("#temperature").html(temp);
           $("#city").html(json.current_observation.display_location.full);
           
-          
+        
           
           var skycons = new Skycons({
             "color": "pink"
           });
-          if (weather == "Mostly Cloudy") {
+          if (weather == "Mostly Cloudy"||weather == "Partly Cloudy"||weather == "Scattered Clouds") {
             skycons.set("icon1", Skycons.CLOUDY);
           } else if (weather == "Rain" || weather == "Drizzle" || weather == "Thunderstorm") {
             skycons.set("icon1", Skycons.RAIN);
@@ -43,7 +91,7 @@ function getWeather() {
             skycons.set("icon1", Skycons.FOG);
           }
           //skycons.set("icon1", Skycons.PARTLY_CLOUDY_NIGHT); 
-          skycons.play();
+          skycons.play();*/
         });
     
   });
