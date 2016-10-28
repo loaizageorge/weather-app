@@ -71,19 +71,7 @@ h1{
     
     
 
-    /*
-background-color: #00DDF0;
-    border-radius: 25px;
-    padding: 10px 25px 10px 25px;
-    margin-left: 25%;
-    margin-right: 25%;
-    height: auto;
-    width: auto;
-    text-align: center;
-    color: #FFFFFF;
-    margin-bottom: 200px;
-*/
-    
+
     
 }
 
@@ -92,7 +80,7 @@ background-color: #00DDF0;
 }
 #degree{
     display: inline-block;
-    color: pink;
+    
 }
 
 
